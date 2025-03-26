@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>肖鑫龙 - Java开发工程师 | 个人博客</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #00f7ff;
+            --secondary-color: #ff00aa;
+            --dark-bg: #0a0a1a;
+            --darker-bg: #050510;
+            --text-color: #e0e0e0;
+            --highlight: #00ffcc;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: linear-gradient(to bottom, var(--darker-bg), var(--dark-bg));
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        header {
+            padding: 30px 0;
+            border-bottom: 1px solid rgba(0, 247, 255, 0.2);
+            position: relative;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
+            position: relative;
+        }
+        
+        .logo::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover::after {
+            transform: scaleX(1);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 300;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+        
+        nav ul li a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            text-shadow: 0 0 15px rgba(0, 247, 255, 0.7);
+            animation: glow 2s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(0, 247, 255, 0.7);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(0, 247, 255, 0.9), 0 0 30px rgba(0, 247, 255, 0.5);
+            }
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+        
+        .typewriter {
+            border-right: 3px solid var(--primary-color);
+            white-space: nowrap;
+            overflow: hidden;
+            margin: 0 auto;
+            letter-spacing: 2px;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary-color) }
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 247, 255, 0.2), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+        
+        .btn:hover {
+            background: rgba(0, 247, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 247, 255, 0.5);
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .about {
+            padding: 100px 0;
+            background: rgba(5, 5, 16, 0.7);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 40px;
+        }
+        
+        .about-text h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--highlight);
+        }
+        
+        .about-text p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .skill-item {
+            background: rgba(0, 247, 255, 0.1);
+            border: 1px solid rgba(0, 247, 255, 0.3);
+            padding: 8px 15px;
+            margin: 0 10px 10px 0;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            background: rgba(0, 247, 255, 0.2);
+            box-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+        
+        .code-box {
+            background: rgba(10, 10, 26, 0.8);
+            border: 1px solid rgba(0, 247, 255, 0.3);
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .code-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(transparent 95%, rgba(0, 247, 255, 0.1));
+            pointer-events: none;
+        }
+        
+        .code-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 247, 255, 0.2);
+        }
+        
+        .code-dots {
+            display: flex;
+            margin-right: 15px;
+        }
+        
+        .code-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+        
+        .code-dot.red {
+            background: #ff5f56;
+        }
+        
+        .code-dot.yellow {
+            background: #ffbd2e;
+        }
+        
+        .code-dot.green {
+            background: #27c93f;
+        }
+        
+        .code-title {
+            font-size: 14px;
+            color: var(--text-color);
+        }
+        
+        .code-content {
+            color: var(--highlight);
+        }
+        
+        .code-keyword {
+            color: #ff79c6;
+        }
+        
+        .code-function {
+            color: #66d9ef;
+        }
+        
+        .code-string {
+            color: #f1fa8c;
+        }
+        
+        .code-comment {
+            color: #6272a4;
+        }
+        
+        .projects {
+            padding: 100px 0;
+        }
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background: rgba(10, 10, 26, 0.7);
+            border: 1px solid rgba(0, 247, 255, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .project-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 247, 255, 0.1) 0%, rgba(255, 0, 170, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 247, 255, 0.2);
+            border-color: var(--primary-color);
+        }
+        
+        .project-card:hover::before {
+            opacity: 1;
+        }
+        
+        .project-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+        
+        .project-info {
+            padding: 20px;
+        }
+        
+        .project-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        .project-info p {
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        
+        .tech-tag {
+            background: rgba(0, 247, 255, 0.1);
+            color: var(--primary-color);
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .project-links {
+            display: flex;
+        }
+        
+        .project-links a {
+            display: inline-block;
+            padding: 5px 15px;
+            background: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            border-radius: 4px;
+            font-size: 14px;
+            text-decoration: none;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .project-links a:hover {
+            background: rgba(0, 247, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
+        }
+        
+        .contact {
+            padding: 100px 0;
+            background: rgba(5, 5, 16, 0.7);
+        }
+        
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 40px;
+        }
+        
+        .contact-info h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--highlight);
+        }
+        
+        .contact-info p {
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .contact-details {
+            margin-bottom: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 247, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary-color);
+            font-size: 18px;
+        }
+        
+        .contact-text h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+        
+        .contact-text p {
+            margin: 0;
+            font-size: 14px;
+        }
+        
+        .social-links {
+            display: flex;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 247, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: var(--primary-color);
+            color: var(--dark-bg);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 247, 255, 0.4);
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(10, 10, 26, 0.8);
+            border: 1px solid rgba(0, 247, 255, 0.3);
+            border-radius: 4px;
+            color: var(--text-color);
+            font-family: 'Roboto', sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        footer {
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid rgba(0, 247, 255, 0.2);
+        }
+        
+        .footer-text {
+            font-size: 14px;
+            color: rgba(224, 224, 224, 0.7);
+        }
+        
+        .footer-text a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .about-text, .about-image {
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+            
+            .contact-info, .contact-form {
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+            
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* 特殊效果 */
+        .glowing-border {
+            position: relative;
+        }
+        
+        .glowing-border::before {
+            content: "";
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--primary-color));
+            background-size: 200% 200%;
+            z-index: -1;
+            border-radius: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            animation: gradientBG 3s ease infinite;
+        }
+        
+        .glowing-border:hover::before {
+            opacity: 1;
+        }
+        
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        /* 3D卡片效果 */
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+        }
+        
+        .card-3d:hover {
+            transform: rotateY(10deg) rotateX(5deg) translateY(-10px);
+        }
+    </style>
+</head>
+<body>
+    <!-- 粒子背景 -->
+    <div id="particles-js"></div>
+    
+    <div class="container">
+        <!-- 头部导航 -->
+        <header>
+            <div class="header-content">
+                <div class="logo">XIAO XINLONG</div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#about">关于我</a></li>
+                        <li><a href="#projects">项目</a></li>
+                        <li><a href="#contact">联系我</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        
+        <!-- 英雄区域 -->
+        <section id="home" class="hero">
+            <h1>肖鑫龙</h1>
+            <div class="typewriter">
+                <p>Java开发工程师 | 技术博客作者 | 开源贡献者</p>
+            </div>
+            <p>专注于Java后端开发、分布式系统架构和性能优化。热爱分享技术，追求代码的优雅与高效。</p>
+            <a href="#contact" class="btn">联系我</a>
+        </section>
+        
+        <!-- 关于我 -->
+        <section id="about" class="about">
+            <h2 class="section-title">关于我</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Java开发工程师</h3>
+                    <p>你好，我是肖鑫龙，一名有5年经验的Java开发工程师。我专注于构建高性能、可扩展的后端系统，对微服务架构、分布式系统和数据库优化有深入理解。</p>
+                    <p>我热爱技术，喜欢解决复杂问题，并不断学习新技术来提升自己。在我的职业生涯中，我参与过多个大型项目的架构设计和开发，积累了丰富的实战经验。</p>
+                    <p>除了编码，我还喜欢撰写技术博客，分享我的学习心得和解决问题的经验。我相信知识共享能够推动整个技术社区的进步。</p>
+                    
+                    <div class="skills">
+                        <span class="skill-item">Java</span>
+                        <span class="skill-item">Spring Boot</span>
+                        <span class="skill-item">MySQL</span>
+                        <span class="skill-item">Redis</span>
+                        <span class="skill-item">Kafka</span>
+                        <span class="skill-item">Docker</span>
+                        <span class="skill-item">Kubernetes</span>
+                        <span class="skill-item">微服务</span>
+                        <span class="skill-item">分布式系统</span>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <div class="code-box card-3d">
+                        <div class="code-header">
+                            <div class="code-dots">
+                                <div class="code-dot red"></div>
+                                <div class="code-dot yellow"></div>
+                                <div class="code-dot green"></div>
+                            </div>
+                            <div class="code-title">UserService.java</div>
+                        </div>
+                        <div class="code-content">
+                            <p><span class="code-keyword">public class</span> <span class="code-function">UserService</span> {</p>
+                            <p>&nbsp;&nbsp;<span class="code-keyword">private final</span> UserRepository userRepository;</p>
+                            <br>
+                            <p>&nbsp;&nbsp;<span class="code-keyword">public</span> <span class="code-function">UserService</span>(UserRepository userRepository) {</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">this</span>.userRepository = userRepository;</p>
+                            <p>&nbsp;&nbsp;}</p>
+                            <br>
+                            <p>&nbsp;&nbsp;<span class="code-keyword">public</span> User <span class="code-function">getUserById</span>(Long id) {</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> userRepository.findById(id)</p>
+                            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.orElseThrow(() -> <span class="code-keyword">new</span> <span class="code-function">ResourceNotFoundException</span>(<span class="code-string">"User not found"</span>));</p>
+                            <p>&nbsp;&nbsp;}</p>
+                            <p>}</p>
+                            <br>
+                            <p><span class="code-comment">// 使用Spring Boot构建的高性能用户服务</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 项目展示 -->
+        <section id="projects" class="projects">
+            <h2 class="section-title">我的项目</h2>
+            <div class="project-grid">
+                <!-- 项目1 -->
+                <div class="project-card glowing-border card-3d">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="分布式电商系统">
+                    </div>
+                    <div class="project-info">
+                        <h3>分布式电商系统</h3>
+                        <p>基于Spring Cloud的分布式电商平台，支持高并发订单处理和实时库存管理。</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Spring Cloud</span>
+                            <span class="tech-tag">Redis</span>
+                            <span class="tech-tag">RabbitMQ</span>
+                            <span class="tech-tag">Elasticsearch</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn">查看详情</a>
+                            <a href="#" class="btn">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 项目2 -->
+                <div class="project-card glowing-border card-3d">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="微服务监控平台">
+                    </div>
+                    <div class="project-info">
+                        <h3>微服务监控平台</h3>
+                        <p>实时监控微服务架构的性能指标，提供可视化分析和告警功能。</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Prometheus</span>
+                            <span class="tech-tag">Grafana</span>
+                            <span class="tech-tag">Spring Boot</span>
+                            <span class="tech-tag">InfluxDB</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn">查看详情</a>
+                            <a href="#" class="btn">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 项目3 -->
+                <div class="project-card glowing-border card-3d">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="高性能API网关">
+                    </div>
+                    <div class="project-info">
+                        <h3>高性能API网关</h3>
+                        <p>基于Netty构建的高性能API网关，支持动态路由、负载均衡和熔断机制。</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Netty</span>
+                            <span class="tech-tag">Nginx</span>
+                            <span class="tech-tag">Lua</span>
+                            <span class="tech-tag">Redis</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn">查看详情</a>
+                            <a href="#" class="btn">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 联系我 -->
+        <section id="contact" class="contact">
+            <h2 class="section-title">联系我</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>让我们一起合作</h3>
+                    <p>如果您有任何问题或合作意向，请随时联系我。我期待与您交流技术或探讨合作机会。</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i>📧</i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>邮箱</h4>
+                                <p>xinxinlong@example.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i>📱</i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>电话</h4>
+                                <p>+86 138 1234 5678</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i>📍</i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>地址</h4>
+                                <p>中国北京市海淀区</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link">GitHub</a>
+                        <a href="#" class="social-link">LinkedIn</a>
+                        <a href="#" class="social-link">Twitter</a>
+                        <a href="#" class="social-link">WeChat</a>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">姓名</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">邮箱</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">主题</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">消息</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn">发送消息</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 页脚 -->
+        <footer>
+            <p class="footer-text">© 2023 肖鑫龙. 版权所有 | 由 <a href="#">Java技术栈</a> 驱动</p>
+        </footer>
+    </div>
+    
+    <!-- 粒子效果脚本 -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // 初始化粒子效果
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#00f7ff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#00f7ff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+        
+        // 打字机效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const typewriter = document.querySelector('.typewriter');
+            if (typewriter) {
+                setTimeout(() => {
+                    typewriter.style.borderRight = 'none';
+                }, 3500);
+            }
+        });
+    </script>
+</body>
+</html>
